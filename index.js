@@ -9,10 +9,10 @@ fs.readdir(path.join(__dirname, "data"), function (err, files) {
 
     files.forEach(function (file) {
       fs.readFile(path.join(__dirname, "data", file), function (err, data) {
-        if(err) {
+        if (err) {
           console.log(err);
         } else {
-          console.log(data);
+          console.log(data.toString());
         }
       });
     });
