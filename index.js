@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-
+// sprawdzenie w folderze czy sa pliki oraz zczytanie nazwy
 fs.readdir(path.join(__dirname, "data"), function (err, files) {
   if (err) {
     console.log(err);
@@ -23,7 +23,7 @@ fs.readdir(path.join(__dirname, "data"), function (err, files) {
 
     // tworzenie pliku result.txt
 
-    files.forEach(function (file) {
+    files.forEach(function (file, index) {
       fs.readFile(
         path.join(__dirname, "data", file),
         "utf-8",
@@ -44,11 +44,13 @@ fs.readdir(path.join(__dirname, "data"), function (err, files) {
             }
           }
 
-          console.log(sum);
-
           fs.writeFile(
-            path.join(__dirname, "average", "result.txt"),
-            "test",
+            path.join(
+              __dirname,
+              "average",
+              "result-year-" + (index + 1) + ".txt"
+            ),
+            (sum / studentsCount).toString(),
             function (err) {
               if (err) {
                 console.log(err);
