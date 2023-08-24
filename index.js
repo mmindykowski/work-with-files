@@ -22,30 +22,30 @@ fs.readdir(path.join(__dirname, "data"), function (err, files) {
     });
 
     // tworzenie pliku result.txt
-    fs.writeFile(
-      path.join(__dirname, "average", "result.txt"),
-      "test",
-      function (err) {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log("Stworzono plik!");
-        }
-      }
-    );
 
-    // files.forEach(function (file) {
-    //   fs.readFile(
-    //     path.join(__dirname, "data", file),
-    //     "utf-8",
-    //     function (err, data) {
-    //       if (err) {
-    //         console.log(err);
-    //       } else {
-    //         console.log(JSON.parse(data));
-    //       }
-    //     }
-    //   );
-    // });
+    files.forEach(function (file) {
+      fs.readFile(
+        path.join(__dirname, "data", file),
+        "utf-8",
+        function (err, data) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log(JSON.parse(data));
+          }
+          fs.writeFile(
+            path.join(__dirname, "average", "result.txt"),
+            "test",
+            function (err) {
+              if (err) {
+                console.log(err);
+              } else {
+                console.log("Stworzono plik!");
+              }
+            }
+          );
+        }
+      );
+    });
   }
 });
